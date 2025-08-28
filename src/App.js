@@ -10,6 +10,7 @@ import CircuitGuidePage from './pages/CircuitGuidePage';
 import StandingsPage from './pages/StandingsPage';
 import TeamPage from './pages/TeamPage';
 import AddToHomeScreenPage from './pages/AddToHomeScreenPage';
+import NewsPage from './pages/NewsPage';
 
 // =================================================================================================
 // Ana Uygulama Bileşeni (App.js)
@@ -50,6 +51,8 @@ const App = () => {
     switch (currentPage) {
       case 'home':
         return <HomePage f1Data={f1Data} loading={loading} error={error} />;
+      case 'haberler':
+        return <NewsPage />;
       case 'race-calendar':
         return <RaceCalendarPage f1Data={f1Data} loading={loading} error={error} year={year} setYear={setYear} fetchRaceResults={fetchRaceResults} />;
       case 'circuit-guide':
@@ -96,6 +99,7 @@ const App = () => {
             {/* Masaüstü navigasyon */}
             <div className="hidden md:flex items-center gap-2 lg:gap-4">
               {navBtn('home', 'Ana Sayfa')}
+              {navBtn('haberler', 'Haberler')}
               {navBtn('race-calendar', 'Yarış Takvimi')}
               {navBtn('circuit-guide', 'Pist Rehberi')}
               {navBtn('standings', 'Sıralamalar')}
@@ -122,6 +126,7 @@ const App = () => {
           {isNavOpen && (
             <div className="md:hidden mt-3 grid gap-2">
               {navBtn('home', 'Ana Sayfa')}
+              {navBtn('haberler', 'Haberler')}
               {navBtn('race-calendar', 'Yarış Takvimi')}
               {navBtn('circuit-guide', 'Pist Rehberi')}
               {navBtn('standings', 'Sıralamalar')}
