@@ -8,8 +8,9 @@ const useRssFeed = (feedUrl) => {
 
   useEffect(() => {
     const fetchFeed = async () => {
-      // Using a more reliable CORS proxy: corsproxy.io
-      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(feedUrl)}`;
+      // Using a more reliable CORS proxy: allorigins.win
+      const encodedUrl = encodeURIComponent(feedUrl);
+      const proxyUrl = `https://api.allorigins.win/raw?url=${encodedUrl}`;
       const parser = new Parser();
 
       try {
