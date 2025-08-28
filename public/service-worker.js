@@ -1,6 +1,6 @@
 // public/service-worker.js
 
-const CACHE_NAME = 'arka-kanat-cache-v2';
+const CACHE_NAME = 'arka-kanat-cache-v3';
 
 // Install event: cache the app shell
 self.addEventListener('install', event => {
