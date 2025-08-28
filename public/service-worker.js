@@ -1,6 +1,6 @@
 // public/service-worker.js
 
-const CACHE_NAME = 'arka-kanat-cache-v1';
+const CACHE_NAME = 'arka-kanat-cache-v2';
 
 // Install event: cache the app shell
 self.addEventListener('install', event => {
@@ -11,7 +11,6 @@ self.addEventListener('install', event => {
         // Cache root and essential assets. The browser will cache other assets as they are requested.
         return cache.addAll([
           '/',
-          '/index.html',
           '/favicon.ico',
           '/aklogo.png',
           '/manifest.json'
