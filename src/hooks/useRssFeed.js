@@ -8,8 +8,8 @@ const useRssFeed = (feedUrl) => {
 
   useEffect(() => {
     const fetchFeed = async () => {
-      // Using a more reliable CORS proxy: thingproxy.freeboard.io
-      const proxyUrl = `https://thingproxy.freeboard.io/fetch/${feedUrl}`;
+      // Using a more reliable CORS proxy: corsproxy.io
+      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(feedUrl)}`;
       const parser = new Parser();
 
       try {
