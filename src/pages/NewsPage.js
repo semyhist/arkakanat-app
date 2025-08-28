@@ -5,8 +5,7 @@ import { Rss } from 'lucide-react';
 import { Tweet } from 'react-tweet';
 
 const NewsPage = () => {
-  const feedUrl = 'https://rss.app/feeds/S1n0npiU5ff4TdhL.xml';
-  const { feed, loading, error } = useRssFeed(feedUrl);
+  const { feed, loading, error } = useRssFeed();
 
   const getTweetId = (url) => {
     if (!url) return null;
