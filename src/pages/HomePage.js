@@ -80,11 +80,11 @@ const HomePage = ({ f1Data, loading, error }) => {
           </p>
           {nextRace ? (
             <div className="dark:bg-zinc-900 bg-gray-50 p-4 sm:p-6 rounded-3xl border dark:border-zinc-700/50 border-gray-300 shadow-2xl inline-block max-w-full animate-zoom-in text-left">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-red-400 flex items-center justify-start sm:justify-center">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-red-400 flex items-center justify-center">
                 <CircleDot size={22} className="mr-2 sm:mr-3 text-red-500 animate-pulse" />
                 Sıradaki Yarış
               </h2>
-              <p className="dark:text-gray-200 text-gray-800 mb-4 text-lg sm:text-xl md:text-2xl font-semibold break-words">{nextRace.raceName}</p>
+              <p className="dark:text-gray-200 text-gray-800 mb-4 text-lg sm:text-xl md:text-2xl font-semibold break-words text-center">{nextRace.raceName}</p>
 
               <Countdown targetDate={`${nextRace.date}T${nextRace.time || '00:00:00Z'}`} />
 

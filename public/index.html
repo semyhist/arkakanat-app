@@ -26,7 +26,22 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>Arka Kanat Hub</title>
+      <title>Arka Kanat Hub</title>
+    <script>
+      window.addEventListener('error', function (event) {
+        var errorContainer = document.createElement('div');
+        errorContainer.style.position = 'fixed';
+        errorContainer.style.top = '0';
+        errorContainer.style.left = '0';
+        errorContainer.style.width = '100%';
+        errorContainer.style.padding = '10px';
+        errorContainer.style.backgroundColor = '#f8d7da';
+        errorContainer.style.color = '#721c24';
+        errorContainer.style.zIndex = '9999';
+        errorContainer.innerHTML = '<h3>An error occurred:</h3><p>' + event.message + '</p><p>File: ' + event.filename + '</p><p>Line: ' + event.lineno + '</p>';
+        document.body.appendChild(errorContainer);
+      });
+    </script>
   <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="pragma" content="no-cache" />
   <meta http-equiv="expires" content="0" />

@@ -8,9 +8,8 @@ const useRssFeed = (feedUrl) => {
 
   useEffect(() => {
     const fetchFeed = async () => {
-      // Using a more reliable CORS proxy: allorigins.win
-      const encodedUrl = encodeURIComponent(feedUrl);
-      const proxyUrl = `https://api.allorigins.win/raw?url=${encodedUrl}`;
+      // Using a more reliable CORS proxy: thingproxy.freeboard.io
+      const proxyUrl = `https://thingproxy.freeboard.io/fetch/${feedUrl}`;
       const parser = new Parser();
 
       try {
