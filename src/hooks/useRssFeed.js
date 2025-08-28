@@ -8,29 +8,43 @@ const useRssFeed = (feedUrl) => {
 
   useEffect(() => {
     const fetchFeed = async () => {
-      // Using a more reliable CORS proxy: allorigins.win
-      const encodedUrl = encodeURIComponent(feedUrl);
-      const proxyUrl = `https://api.allorigins.win/raw?url=${encodedUrl}`;
+      setLoading(true);
+      setError(null);
       const parser = new Parser();
 
-      try {
-        setLoading(true);
-        
-        const response = await fetch(proxyUrl);
-        if (!response.ok) {
-          throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
-        }
-        const text = await response.text();
+      const proxies = [
+        (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+        (url) => `https://cors.bridged.cc/${url}`,
+        (url) => `https://cors-proxy.fringe.zone/${url}`
+      ];
 
-        const feedData = await parser.parseString(text);
-        
-        setFeed(feedData);
-      } catch (err) {
-        console.error("Error fetching or parsing RSS feed:", err);
-        setError(err);
-      } finally {
-        setLoading(false);
+      let success = false;
+      for (const getProxyUrl of proxies) {
+        const proxyUrl = getProxyUrl(feedUrl);
+        try {
+          const response = await fetch(proxyUrl, { cache: 'no-store' });
+          if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+          }
+          const text = await response.text();
+          const feedData = await parser.parseString(text);
+          
+          setFeed(feedData);
+          success = true;
+          console.log(`Proxy success: ${proxyUrl}`);
+          break; // Exit loop on success
+        } catch (err) {
+          console.warn(`Proxy failed: ${proxyUrl}`, err);
+          // Try next proxy
+        }
       }
+
+      if (!success) {
+        console.error("All proxies failed.");
+        setError(new Error("Haber akışı sunucularına ulaşılamadı."));
+      }
+
+      setLoading(false);
     };
 
     fetchFeed();
